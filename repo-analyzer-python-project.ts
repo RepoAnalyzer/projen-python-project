@@ -1,0 +1,55 @@
+
+
+import { cdk, SampleFile } from "projen";
+
+/**
+ * Configurable knobs for Awesome Lists
+ */
+export interface AwesomeListProjectOptions extends cdk.JsiiProjectOptions {
+    /**
+     * What e-mail address to list for the Code of Conduct Point of Contact
+     *
+     * @default - `project.authorAddress`
+     */
+    readonly contactEmail?: string;
+}
+
+/**
+ * Awesome List project
+ *
+ * @pjid awesome-list
+ */
+export class AwesomeList extends cdk.JsiiProject {
+    constructor(options: AwesomeListProjectOptions) {
+        super({
+            ...options,
+            readme: {
+                filename: "readme.md",
+                contents: readmeContents(),
+            },
+            defaultReleaseBranch: "main",
+            gitpod: true,
+            releaseToNpm: false,
+        });
+
+        new SampleFile(this, "code-of-conduct.md", {
+            contents: this.codeOfConduct().replace(
+                "CONTACTEMAIL",
+                options.contactEmail ?? "noreply@example.com"
+            ),
+        });
+
+        new SampleFile(this, "contributing.md", {
+            contents: this.contributing(),
+        });
+
+        this._awesomeLint();
+    }
+
+    private _awesomeLint() {
+        this.addDevDeps("awesome-lint");
+
+        const awesomeLintTask = this.addTask("awesome-lint");
+        awesomeLintTask.exec("npx awesome-lint");
+        this.postCompileTask.spawn(awesomeLintTask);
+    }
