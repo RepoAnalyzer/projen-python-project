@@ -17,6 +17,9 @@ const project = new cdk.JsiiProject({
     // autoApproveOptions: {
     //     allowedUsernames: ["DeadlySquad13-automation"],
     // },
+
+    deps: ["projen@0.65.13"],
+    peerDeps: ["projen@0.65.13"],
     // deps: [],                /* Runtime dependencies of this module. */
     // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
     // devDeps: [],             /* Build dependencies for this module. */
