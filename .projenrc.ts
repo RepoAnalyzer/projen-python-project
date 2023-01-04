@@ -1,4 +1,8 @@
+import fs from "fs";
+import path from "path";
 import { cdk, javascript } from "projen";
+
+const DOCS_ROOT = "docs";
 
 const project = new cdk.JsiiProject({
   author: "DeadlySquad13",
@@ -36,7 +40,8 @@ const project = new cdk.JsiiProject({
   peerDeps: ["projen@0.65.13"],
   devDeps: ["@typescript-eslint/parser"],
 
-  docgenFilePath: "docs/api/API.md",
+  docsDirectory: DOCS_ROOT,
+  docgenFilePath: `${DOCS_ROOT}/API.md`,
 });
 
 const eslint = javascript.Eslint.of(project);
@@ -45,5 +50,23 @@ if (eslint) {
   // Had lint errors (couldn't find root as far as I remember).
   eslint.addExtends("eslint:recommended");
 }
+
+project.docsDirectory;
+const mkdir = (relativePath: string) => {
+  const directory = path.join(__dirname, relativePath);
+
+  if (fs.existsSync(directory)) {
+    return;
+  }
+
+  fs.mkdir(directory, (err) => {
+    if (err) {
+      return console.error(err);
+    }
+    console.log(`Directory '${directory}' created successfully!`);
+  });
+};
+
+mkdir(project.docsDirectory);
 
 project.synth();
