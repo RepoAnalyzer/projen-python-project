@@ -1,5 +1,3 @@
-
-
 import { cdk, SampleFile } from "projen";
 
 /**
@@ -40,7 +38,7 @@ export class AwesomeList extends cdk.JsiiProject {
         });
 
         new SampleFile(this, "contributing.md", {
-            contents: 'Contribute pls'/* this.contributing() */,
-        }
+            contents: 'Contribute pls'/* this.contributing() */
+        })
     }
 }
