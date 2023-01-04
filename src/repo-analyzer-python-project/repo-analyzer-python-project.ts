@@ -1,9 +1,9 @@
-import { cdk, SampleFile } from "projen";
+import { cdk } from "projen";
 
 /**
- * Configurable knobs for Awesome Lists
+ * Configurable knobs for Repo Analyzer Python Project.
  */
-export interface AwesomeListProjectOptions extends cdk.JsiiProjectOptions {
+export interface RepoAnalyzerPythonProjectOptions extends cdk.JsiiProjectOptions {
     /**
      * What e-mail address to list for the Code of Conduct Point of Contact
      *
@@ -13,12 +13,11 @@ export interface AwesomeListProjectOptions extends cdk.JsiiProjectOptions {
 }
 
 /**
- * Awesome List project
+ * Repo Analyzer Python Project.
  *
- * @pjid awesome-list
  */
-export class AwesomeList extends cdk.JsiiProject {
-    constructor(options: AwesomeListProjectOptions) {
+export class RepoAnalyzerPython extends cdk.JsiiProject {
+    constructor(options: RepoAnalyzerPythonProjectOptions) {
         super({
             ...options,
             readme: {
@@ -29,26 +28,5 @@ export class AwesomeList extends cdk.JsiiProject {
             gitpod: true,
             releaseToNpm: false,
         });
-
-        // new SampleFile(this, "code-of-conduct.md", {
-        //     contents: this.codeOfConduct().replace(
-        //         "CONTACTEMAIL",
-        //         options.contactEmail ?? "noreply@example.com"
-        //     ),
-        // });
-
-        // new SampleFile(this, "contributing.md", {
-        //     contents: this.contributing(),
-        // });
-
-        this._awesomeLint();
-    }
-
-    private _awesomeLint() {
-        this.addDevDeps("awesome-lint");
-
-        const awesomeLintTask = this.addTask("awesome-lint");
-        awesomeLintTask.exec("npx awesome-lint");
-        this.postCompileTask.spawn(awesomeLintTask);
     }
 }

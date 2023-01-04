@@ -25,7 +25,8 @@ export class AwesomeList extends cdk.JsiiProject {
             ...options,
             readme: {
                 filename: "readme.md",
-                contents: readmeContents(),
+                contents: "Test readme",
+                // contents: readmeContents(),
             },
             defaultReleaseBranch: "main",
             gitpod: true,
@@ -33,14 +34,14 @@ export class AwesomeList extends cdk.JsiiProject {
         });
 
         new SampleFile(this, "code-of-conduct.md", {
-            contents: this.codeOfConduct().replace(
+            contents: /* this.codeOfConduct() */'Test CONTACTEMAIL'.replace(
                 "CONTACTEMAIL",
                 options.contactEmail ?? "noreply@example.com"
             ),
         });
 
         new SampleFile(this, "contributing.md", {
-            contents: this.contributing(),
+            contents: 'Contribute pls'/* this.contributing() */,
         });
 
         this._awesomeLint();
@@ -53,3 +54,4 @@ export class AwesomeList extends cdk.JsiiProject {
         awesomeLintTask.exec("npx awesome-lint");
         this.postCompileTask.spawn(awesomeLintTask);
     }
+}
