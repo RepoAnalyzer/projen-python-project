@@ -1,8 +1,9 @@
 {
-  "name": "projen-init-test",
+  "name": "projen-python-project",
+  "description": "Projen project type for Repo Analyzer python projects",
   "repository": {
     "type": "git",
-    "url": "https://github.com/46250621+DeadlySquad13/projen-init-test.git"
+    "url": "https://github.com/RepoAnalyzer/projen-python-project.git"
   },
   "scripts": {
     "build": "npx projen build",
@@ -65,6 +66,15 @@
   "dependencies": {
     "projen": "0.65.13"
   },
+  "keywords": [
+    "constructs",
+    "project",
+    "projen",
+    "python",
+    "repo analyzer",
+    "sdk",
+    "template"
+  ],
   "main": "lib/index.js",
   "license": "Apache-2.0",
   "version": "0.0.0",

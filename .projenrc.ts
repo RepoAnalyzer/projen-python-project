@@ -3,11 +3,22 @@ import { cdk, javascript } from "projen";
 const project = new cdk.JsiiProject({
   author: "DeadlySquad13",
   authorAddress: "46250621+DeadlySquad13@users.noreply.github.com",
-  name: "projen-init-test",
-  repositoryUrl:
-    "https://github.com/46250621+DeadlySquad13/projen-init-test.git",
-
-  releaseToNpm: true,
+  name: "projen-python-project",
+  packageName: "projen-python-project" /* The "name" in package.json. */,
+  repositoryUrl: "https://github.com/RepoAnalyzer/projen-python-project.git",
+  description:
+    "Projen project type for Repo Analyzer python projects" /* The description is just a string that helps people understand the purpose of the package. */,
+  keywords: [
+    // Directly related.
+    "python",
+    "projen",
+    "project",
+    "template",
+    // Child of.
+    "repo analyzer",
+    "sdk",
+    "constructs",
+  ],
 
   defaultReleaseBranch: "main",
   projenrcTs: true,
@@ -23,21 +34,16 @@ const project = new cdk.JsiiProject({
 
   deps: ["projen@0.65.13"],
   peerDeps: ["projen@0.65.13"],
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  devDeps: [
-    "@typescript-eslint/parser",
-  ] /* Build dependencies for this module. */,
-  // packageName: undefined,  /* The "name" in package.json. */
+  devDeps: ["@typescript-eslint/parser"],
+
+  docgenFilePath: "docs/api/API.md",
 });
 
 const eslint = javascript.Eslint.of(project);
 
 if (eslint) {
+  // Had lint errors (couldn't find root as far as I remember).
   eslint.addExtends("eslint:recommended");
-  // eslint.config.parserOptions = {
-  //     tsconfigRootDir: __dirname,
-  // }
 }
 
 project.synth();
