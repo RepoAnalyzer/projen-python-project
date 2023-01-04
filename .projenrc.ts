@@ -7,6 +7,8 @@ const project = new cdk.JsiiProject({
   repositoryUrl:
     "https://github.com/46250621+DeadlySquad13/projen-init-test.git",
 
+  releaseToNpm: true,
+
   defaultReleaseBranch: "main",
   projenrcTs: true,
   gitpod: true,
