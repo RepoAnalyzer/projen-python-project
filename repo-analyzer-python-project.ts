@@ -1,5 +1,3 @@
-
-
 import { cdk, SampleFile } from "projen";
 
 /**
@@ -25,7 +23,7 @@ export class AwesomeList extends cdk.JsiiProject {
             ...options,
             readme: {
                 filename: "readme.md",
-                contents: readmeContents(),
+                contents: "Test readme",
             },
             defaultReleaseBranch: "main",
             gitpod: true,
@@ -33,23 +31,14 @@ export class AwesomeList extends cdk.JsiiProject {
         });
 
         new SampleFile(this, "code-of-conduct.md", {
-            contents: this.codeOfConduct().replace(
+            contents: /* this.codeOfConduct() */'Test CONTACTEMAIL'.replace(
                 "CONTACTEMAIL",
                 options.contactEmail ?? "noreply@example.com"
             ),
         });
 
         new SampleFile(this, "contributing.md", {
-            contents: this.contributing(),
-        });
-
-        this._awesomeLint();
+            contents: 'Contribute pls'/* this.contributing() */
+        })
     }
-
-    private _awesomeLint() {
-        this.addDevDeps("awesome-lint");
-
-        const awesomeLintTask = this.addTask("awesome-lint");
-        awesomeLintTask.exec("npx awesome-lint");
-        this.postCompileTask.spawn(awesomeLintTask);
-    }
+}
