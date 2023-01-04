@@ -26,7 +26,6 @@ export class AwesomeList extends cdk.JsiiProject {
             readme: {
                 filename: "readme.md",
                 contents: "Test readme",
-                // contents: readmeContents(),
             },
             defaultReleaseBranch: "main",
             gitpod: true,
@@ -42,16 +41,6 @@ export class AwesomeList extends cdk.JsiiProject {
 
         new SampleFile(this, "contributing.md", {
             contents: 'Contribute pls'/* this.contributing() */,
-        });
-
-        this._awesomeLint();
-    }
-
-    private _awesomeLint() {
-        this.addDevDeps("awesome-lint");
-
-        const awesomeLintTask = this.addTask("awesome-lint");
-        awesomeLintTask.exec("npx awesome-lint");
-        this.postCompileTask.spawn(awesomeLintTask);
+        }
     }
 }
