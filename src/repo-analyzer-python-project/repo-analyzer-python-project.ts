@@ -25,7 +25,7 @@ export const DEFAULT_OPTIONS: Partial<RepoAnalyzerPythonProjectOptions> = {
  *
  */
 export class RepoAnalyzerPython extends PythonProject {
-    public readonly black;
+    public readonly black: boolean;
     public readonly flake8: TomlFile;
     public readonly isort: IniFile;
 
